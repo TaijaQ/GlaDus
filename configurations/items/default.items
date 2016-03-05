@@ -1,0 +1,22 @@
+Group 	All
+Group 	Remotes	(All)
+Group	Sensors (All)
+Group	Lights (All)
+Group:Switch:OR(ON, OFF)	comLights "All lights [(%d)]"	(All)
+
+
+Switch 	Lamp 		"Lamp" 			(comLights, Lights) {tellstick="1:Command"}
+Switch 	NightLight	"Nightlight"	(comLights, Lights) {tellstick="2:Command"}
+
+
+Switch 	Remote1	(Remotes) 	{tellstick="Remote1:Command"}
+Switch 	Remote2 (Remotes)	{tellstick="Remote2:Command"}
+Switch 	Remote3 (Remotes) 	{tellstick="Remote3:Command"}
+
+
+Number	Humidity	"Humidity [%.1f %%]"			<humidity>		(Sensors)		{tellstick="3:Humidity", autoupdate="true"}
+Number	Temp		"Temperature [%.1f C]"			<temperature>	(Sensors)		{tellstick="3:Temperature", autoupdate="true"}
+Number 	AvgTemp 	"Average temperature [%.1f C]" 	<temperature>
+Number 	AvgHumidity "Average humidity [%.1f %%]" 	<humidity>
+
+Dimmer	Volume	  "Volume [%.1f %%]"

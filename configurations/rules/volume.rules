@@ -1,0 +1,18 @@
+import org.openhab.core.library.items.*
+import org.openhab.core.library.types.*
+import org.openhab.core.persistence.*
+import org.openhab.model.script.actions.*
+
+
+rule "Volume control"
+  when
+    Item Volume received command
+  then
+    if(receivedCommand instanceof PercentType) {
+      setMasterVolume(receivedCommand as PercentType)
+    } else {
+      if(receivedCommand==INCREASE) increaseMasterVolume(20)
+      if(receivedCommand==DECREASE) decreaseMasterVolume(20)
+    }
+      postUpdate(Volume, masterVolume * 100)
+end

@@ -1,0 +1,43 @@
+import org.openhab.core.persistence.*
+import org.openhab.core.library.types.*
+import org.openhab.model.script.actions.*
+import org.openhab.core.library.items.*
+import org.openhab.model.script.actions.Timer
+
+
+var Timer timer = null
+
+rule "Lamp remote"
+when
+	Item Remote1 received command
+then
+	if (receivedCommand==ON) {
+	     sendCommand(Lamp,ON)
+	}
+	else if (receivedCommand==OFF) {
+		sendCommand(Lamp,OFF)
+	}
+end
+
+rule "Timer lamp"
+when
+	Item Remote2 received update
+then
+	if (receivedCommand==ON) {
+		sendCommand(NightLight,ON)
+		if (timer == null) {
+        	timer = createTimer(now.plusSeconds(60) [|
+	        	sendCommand(NightLight,OFF)
+	        ]
+      	}
+      	else {
+       		timer.reschedule(now.plusSeconds(60))
+      	}
+	else if (receivedCommand==OFF) {
+      if (timer != null) {
+        timer.cancel
+        timer = null
+	    sendCommand(NightLight,OFF)
+		}
+	}
+end

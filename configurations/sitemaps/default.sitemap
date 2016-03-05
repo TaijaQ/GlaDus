@@ -1,0 +1,8 @@
+sitemap default label="Sitemap"
+{
+  Frame label="Lights" {
+  	Text label="Status"	icon="info"
+	Switch item=Lamp label="Lamp"
+	Switch item=NightLight label="NightLight"
+	}
+}
