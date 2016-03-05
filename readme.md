@@ -41,9 +41,9 @@ See https://github.com/openhab/openhab/wiki/Quick-Setup-an-openHAB-Server for Op
 
 #### Persistence
 
--rrd4j persistence
-    - Every minute: Temperature and humidity
-    - Every change: Lights
+- rrd4j persistence
+    + Every minute: Temperature and humidity
+    + Every change: Lights
 
 #### Sitemaps
 
